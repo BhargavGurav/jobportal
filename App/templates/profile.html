@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% block title %}Profile{% endblock title %}
+
+{% block data %}
+<div class="container profile-container">
+    <div class="row d-flex justify-content-center align-items-center">
+        <div class="col-lg-6 col-md-8 col-10 p-3">
+            <div class="info-div">
+                <table class="table  table-hover table-boredered">
+                    <div class="d-grid"><button class="btn btn-outline-dark fs-4" style="cursor:alias;">Personal Details</button></div>
+                    <tr>
+                        <td><b>Name</b></td>
+                        <td>{{ user.first_name }} {{ user.last_name }}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Email-ID</b></td>
+                        <td>{{ user.email }}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Mobile no.</b></td>
+                        <td>{{ userDetail.phone }}</td>
+                    </tr>
+                    {% if not user.is_staff %}
+                    <tr>
+                        <td><b>Applied to </b></td>
+                        <td>{{ applied }} jobs</td>
+                    </tr>
+                    {% endif %}
+                    {% if user.is_staff %}
+                    <tr>
+                        <td><b>Company Name</b></td>
+                        <td>{{ userDetail.company }}</td>
+                    </tr>
+                    
+                    {% endif %}
+                    <tr>
+                        <td colspan="2"><a href="#" class="btn btn-outline-danger float-end" data-bs-toggle="modal" data-bs-target="#logoutModal">Logout</a></td>
+                    </tr>
+                    
+                </table>
+            </div>
+            
+        </div>
+        
+    </div>
+    <hr>
+    <div class="row d-flex">
+    {% if not user.is_staff %}
+        <div class="col-12">
+            <p class="fs-3" style="font-weight: 800;">Applied Jobs</p>
+        </div>
+        {% for i in applied_to %}
+            <div class="col-lg-4 col-md-6 p-3">
+                <div class="applied-job-box">
+                    <h4>{{ i.job.user  }}</h4>
+                    <span style="font-weight: 800;" class="fs-5">{{ i.job.post }}</span> <span class="float-end"><b>₹ {{ i.job.salary }} /month </b></span>
+                    <br>
+                    <span>Posted on : {{ i.job.posted_on }}</span> <br>
+                    <span>Open till : {{ i.job.upto }}</span>
+                </div>
+               
+            </div>
+        {% endfor %}
+    {% endif %}
+    
+    {% if user.is_staff %}
+    <div class="col-12">
+        <p class="fs-3" style="font-weight: 800;">Appliers</p>
+    </div>
+    {% for i in appliers %}
+
+    <div class="col-lg-4 col-md-6 p-3">
+        <div class="applied-job-box">
+            <a href="" class="h2">{{ i.user }}</a>
+            <p>Phone no. : +91 {{ i.phone }}</p>
+        </div>
+       
+    </div>
+{% endfor %}
+{% endif %}
+    </div>
+
+</div>
+
+<div class="modal" id="logoutModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <i class="fas fa-sign-out fs-3"></i>&nbsp;<h1>Sign-out</h1>
+                <button class="btn btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body text-center">
+                <p class="h2 text-bold">Sure want to Sign-out?</p>
+            </div>
+            <div class="modal-footer">
+                <a class="btn btn-danger btn-lg rounded-pill" href="{% url 'logoutUser' %}">Yes</a>
+                <button class="btn btn-secondary btn-lg rounded-pill" data-bs-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock data %}

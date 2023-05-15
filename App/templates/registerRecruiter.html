@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% block title %}RegisterRecruiter{% endblock %}
+
+{% block data %}
+<div class="container-fluid registerRecruiter-container">
+    <div class="row d-flex justify-content-center align-items-center">
+        <div class="col-lg-6 col-md-7 col-sm-8 col-10 registerRecruiter-form-div p-4"  data-aos="zoom-in" data-aos-duration="2500" data-aos-easing="ease-in-sine">
+            <form action="" method="post" class="was-validated" >
+                {% csrf_token %}
+                <div class="d-grid">
+                    <button class="btn btn-dark">Register Here</button>
+                </div>
+                <div class="form-group mt-3">
+                    <label for="" class="">First Name</label>
+                    <input type="text" name="fname" class="form-control" id="" required>
+                </div>
+
+                <div class="form-group mt-3">
+                    <label for="" class="">Last Name</label>
+                    <input type="text" name="lname" class="form-control" id="" required>
+                </div>
+
+                <div class="form-group mt-3">
+                    <label for="" class="">Company Name</label>
+                    <input type="text" name="cname" class="form-control" id="" required>
+                </div>
+
+                <div class="form-group mt-3">
+                    <label for="" class="">Email-ID</label>
+                    <input type="email" name="email" class="form-control" id="" required>
+                </div>
+
+                <div class="form-group mt-3">
+                    <label for="" class="">Mobile no.</label>
+                    <div class="input-group">
+                        <span class="input-group-text">+91 </span>
+                        <input type="text" name="mobile" class="form-control" id="" required>
+                    </div>
+                </div>
+
+
+                <div class="form-group mt-3">
+                    <label for="" class="">Password</label>
+                    <input type="password" name="password" class="form-control" id="password1" required>
+                </div>
+                <input type="checkbox" name="" id="checker" onclick="PasswordChecker1()"> See password
+                <ul>
+                    <li>At least 8 character long.</li>
+                    <li>At least one capital letter.[A-Z]</li>
+                    <li>At least one small letter.[a-z]</li>
+                    <li>At least one digit.[0-9]</li>
+                    <li>At least one special letter. (',+-/\@#&*)</li>
+
+                </ul>
+
+                <div class="d-grid mt-4">
+                    <button type="submit" class="btn btn-outline-dark">Register</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    function PasswordChecker1(){
+        var password = document.getElementById('password1');
+        if(password.type == 'password'){
+            password.type = 'text';
+        }else{
+            password.type = 'password';
+        }
+    }
+</script>
+{% endblock %}

@@ -1,0 +1,252 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Home{% endblock %}
+{% block data %}
+{% if not user.is_authenticated %}
+<div class="container-fluid home-container">
+    <div class="row d-flex justify-content-around align-items-center">
+        <!-- <div class="col-12 p-5 "> -->
+            <div class="col-md-5 m-md-1 text-light text-center quote-box" data-aos="fade-up" data-aos-duration="1000" data-aos-easing="ease-in-sine">
+                <p class="h2">&QUOT; Big Journey Begin With Small Steps. &QUOT;</p>
+            </div>
+            {% if not user.is_authenticated %}
+            <div class="col-md-5 col-sm-7 col-11 m-md-1 p-4 form-div" data-aos="zoom-in" data-aos-duration="1500" data-aos-delay="1000" data-aos-easing="ease-in-sine">
+                <form action="" method="post" class="was-validated" >
+                    {% csrf_token %}
+                    <div class="d-grid">
+                        <button class="btn btn-dark">Register Here Candidate</button>
+                    </div>
+                    <div class="form-group mt-3">
+                        <label for="" class="">First Name</label>
+                        <input type="text" name="fname" class="form-control" id="" required>
+                    </div>
+
+                    <div class="form-group mt-3">
+                        <label for="" class="">Last Name</label>
+                        <input type="text" name="lname" class="form-control" id="" required>
+                    </div>
+
+                    <div class="form-group mt-3">
+                        <label for="" class="">Email-ID</label>
+                        <input type="email" name="email" class="form-control" id="" required>
+                    </div>
+
+                    <div class="form-group mt-3">
+                        <label for="" class="">Mobile no.</label>
+                        <div class="input-group">
+                            <span class="input-group-text">+91 </span>
+                            <input type="text" name="mobile" class="form-control" id="" required>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group mt-3">
+                        <label for="" class="">Password</label>
+                        <input type="password" name="password" class="form-control" id="password" required>
+                    </div>
+                    <input type="checkbox" name="" id="checker" onclick="PasswordChecker()"> See password
+                    <ul>
+                        <li>At least 8 character long.</li>
+                        <li>At least one capital letter.[A-Z]</li>
+                        <li>At least one small letter.[a-z]</li>
+                        <li>At least one digit.[0-9]</li>
+                        <li>At least one special letter. (',+-/\@#&*)</li>
+
+                    </ul>
+
+                    <div class="d-grid mt-4">
+                        <button type="submit" class="btn btn-outline-dark">Register</button>
+                    </div>
+                </form>
+            </div>
+        {% endif %}
+        <!-- </div> -->
+    </div>
+</div>
+{% endif %}
+
+<section id="post">
+
+    <div class="container job-post-container ">
+        <p class="h2 text-center">POST</p>
+        {% if user.is_staff %}
+        <div class="row">
+            <div class="col-lg-12 my-1">
+                <button class="btn btn-primary btn-lg float-end fs-4" data-bs-toggle="modal" data-bs-target="#AddJobModal"><i class="fas fa-plus"></i> Post</button>
+            </div>
+        </div>
+        {% endif %}
+        <div class="row py-3">
+            <div class="col-12">
+                <form action="\search\" method="post">{% csrf_token %}
+                    <div class="form-group d-flex">
+                        <input type="text" class="form-control rounded-pill" name="query">
+                        <button class="btn btn-dark rounded-pill px-3 ms-2">Search</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="row d-flex">
+            {% now "Y-m-d" as todays_date %}
+
+            {% for i in jobs %}
+                <div class="col-lg-4 p-3">
+                    {% if i.upto|date:"Y-m-d" > todays_date %} 
+                    <div  id="post-box" data-bs-toggle="modal" data-bs-target="#showPostModal{{i.pk}}">
+                    {% else %}
+                    <div  id="post-box">
+                    {% endif %}
+                        <h4>{{ i.user }}</h4>
+                        <span style="font-weight: 800;" class="fs-5">{{ i.post }}</span> <span class="float-end"><b>₹ {{ i.salary }} /month </b></span>
+
+                        <br>
+                        <span>Posted on : {{ i.posted_on }}</span> <br>
+                        <span>Open till : {{ i.upto }}</span> <br>
+
+
+                        {% if i.upto|date:"Y-m-d" < todays_date %}
+                        <span class="text-danger" style="font-weight: 800;">Deadline reached. Cannot Apply.</span>
+                        {% endif %}
+                    </div> 
+                </div>
+
+                <div class="modal" id="showPostModal{{i.pk}}">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3 style="font-weight: 800;">Post Details</h3>
+                                <button class="btn btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                <h5>{{i.post}}</h5><hr>
+                                <h5>{{i.user}}</h5><hr>
+                                <h5>Salary : ₹ {{i.salary}} per month</h5><hr>
+                                <p><b>Job Description : </b><pre>{{ i.description }}</pre></p><hr>
+                                <p><b>Posted on : </b>{{i.posted_on}}</p>
+                                <p><b>Open till : </b>{{i.upto}}</p>
+
+                            </div>
+                            <div class="modal-footer">
+                                {% if user.is_authenticated %}
+                                    {% if not user.is_staff %}
+                                    <a class="btn btn-primary rounded-pill px-4" href="\apply\{{i.pk}}">Apply</a>
+                                    {% endif %}
+                                {% endif %}
+                                <button class="btn btn-warning rounded-pill px-4" data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="feedback-section" id="feedback">
+      
+    <div class="container-fluid feedback-container bg-dark text-light ">
+      <p class="h2 text-center">FEEDBACK</p>
+      <div class="row d-flex justify-content-around">
+        <div class="col-lg-5 col-md-6 my-5" id="feed-scroll-container" >
+            <div id='feed-scroll' >
+                {% for i in feedbacks %}
+                <div class="feedback text-light">
+                    <h3>{{ i.name }}</h3>
+                    <p>{{ i.feedback }}</p>
+                </div>
+                {% endfor %}
+            </div>
+           
+        </div>
+        <div class="col-lg-5 col-md-6">
+          <form action="\feedback\" method="post" class="p-3">
+            {% csrf_token %}
+            <div class="form-group mt-3">
+              <label for="">Name</label>
+              <input type="text" name="name" id="" class="form-control">
+            </div>
+            <div class="form-group mt-3">
+              <label for="">Email</label>
+              <input type="email" name="email" id="" class="form-control">
+            </div>
+            <div class="form-group mt-3">
+              <label for="">Feedback</label>
+              <textarea name="feedback" id="" class="form-control" rows="5"></textarea>
+            </div>
+            <div class="d-grid mt-3">
+              <button class="btn btn-outline-light">Send</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+<script>
+
+    function PasswordChecker(){
+        var password = document.getElementById('password');
+        if(password.type == 'password'){
+            password.type = 'text';
+        }else{
+            password.type = 'password';
+        }
+    }
+</script>
+
+{% for message in messages %}
+    {% if message.tags == 'success' %}
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+        <script>
+            let m = '{{message}}';
+            swal('', m, 'success');
+        </script>
+    {% else  %}
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+        <script>
+            let n = '{{message}}';
+            swal('', n, 'error');
+        </script>
+    {% endif %}
+{% endfor %}
+
+<div class="modal" id="AddJobModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="fs-4"><i class="fas fa-plus"></i>  Add Job Details</span>
+                <button class="btn btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form action="\addPost\" method="post">
+                    {% csrf_token %}
+                    <div class="form-group mt-3">
+                        <label for="">Post</label>
+                        <input type="text" name="post" id="" class="form-control">
+                    </div>
+                    <div class="form-group mt-3">
+                        <label for="">Salary (per month)</label>
+                        <input type="number" name="salary" id="" class="form-control">
+                    </div>
+                    <div class="form-group mt-3">
+                        <label for="">Description</label>
+                        <textarea name="description" id=""  rows="5" class="form-control"></textarea>
+                    </div>
+                    <div class="form-group mt-3">
+                        <label for="">Open upto</label>
+                        <input type="date" name="upto" id="" class="form-control">
+                    </div>
+                    <div class="d-grid mt-3">
+                        <button type="submit" class="btn btn-info">Submit</button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock data %}
