@@ -1,0 +1,207 @@
+*{
+    font-family: monospace;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+.navbar-brand{
+    font-size: 2rem !important;
+}
+.navbar .nav-link {
+    font-size: 1.5rem !important;
+} 
+.base-container{
+    height: 100vh;
+    background-image: url("../images/home-bg.1752af7eb928.jpg");
+    background-position: center;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    position: relative;
+}
+.base-container::before{
+    position: absolute;
+    content: "";
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .6);
+
+}
+.base-container div{
+    position: relative;
+}
+
+/* ***************home start***************  */
+.home-container{
+    height: 97vh;
+    position: relative;
+    background-image: url("../images/home-bg.1752af7eb928.jpg");
+    background-position: center;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+.home-container::before{
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background: rgba(0, 0, 0, .6);
+}
+.home-container .row{
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+
+.form-div{
+
+    border: 2px solid whitesmoke;
+    border-radius: 7px;
+    background: white;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 32px 64px 0 rgb(49, 47, 47);
+}
+.form-div label{
+    font-weight: 800;
+}
+
+.home-container .quote-box{
+    padding: 15px;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, .5);
+    background: rgba(255, 255, 255, 0.169);
+    border: 2px solid white;
+    border-radius: 7px;
+    backdrop-filter: blur(2px);
+}
+
+#post-box{
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, .5);
+    background: white;
+    border: 1px solid white;
+    border-radius: 7px;
+    padding: 10px;
+    backdrop-filter: blur(15px);
+    cursor: pointer;
+}
+
+.job-post-container{
+    /* margin-top: 300px; */
+    padding-top: 60px;
+    padding-bottom: 60px;
+    /* height: 100vh; */
+    position: relative;
+    background-color: whitesmoke;
+
+}
+/* ***************home end***************  */
+
+/* ***************footer start***************  */
+.useful-link-div{
+    display: flex;
+    flex-direction: column;
+    font-size: 1.5rem;
+}
+.useful-link-div a{
+    text-decoration: none;
+    color: azure;
+    font-size: 1.5rem;
+}
+/* ***************footer end***************  */
+
+/* ***************Recruiter registration start***************  */
+.registerRecruiter-container{
+    height: 92vh;
+    position: relative;
+    background-image: url("../images/recruiterRegister.cf81edbacbab.jpg");
+    background-position: center;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+.registerRecruiter-container::before{
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background: rgba(0, 0, 0, .6);
+}
+.registerRecruiter-container .row{
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+.registerRecruiter-form-div{
+    padding: 20px;
+    border: 2px solid whitesmoke;
+    border-radius: 7px;
+    background: white;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 8px 16px 0 rgb(49, 47, 47);
+}
+.registerRecruiter-form-div label{
+    font-weight: 800;
+}
+/* ***************Recruiter registration end***************  */
+
+/* ***************Profile start***************  */
+.profile-container{
+    /* height: 60vh; */
+    position: relative;
+    background-color: whitesmoke;
+}
+.profile-container .row{
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+.info-div{
+    font-size: larger;
+    border: 2px solid black;
+    border-radius: 7px;
+    padding: 15px;
+    overflow-x: scroll;
+    
+}
+.applied-job-box {
+    padding: 15px;
+    border: 2px solid whitesmoke;
+    border-radius: 7px;
+    background: white;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 8px 16px 0 rgb(147, 143, 143);
+}
+
+/* ***************Profile end***************  */
+
+/* ***************Feedback start***************  */
+.feedback-container{
+    padding: 70px 0 50px 0;
+}
+
+#feed-scroll{
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    height: 331px;
+    padding: 15px 25px;
+}
+
+#feed-scroll .feedback{
+    height: 100%;
+    width: 70%  !important;
+    border: 2px solid white;
+    background-color: rgba(255, 255, 255, 0.534);
+    color: black !important;
+    border-radius: 7px;
+    padding: 10px 20px 10px 20px;
+    margin: 15px 0 15px 0;
+
+}
+/* ***************Feedback end***************  */
