@@ -1,9 +1,52 @@
-# jobportal 
-<h2>JobPortal website using Django Framework</h2>
-<hr>
-<p>Hello Guys, this is a JobPortal website which is created by us using Django framework. This is a fully responsive site i.e. it can be accessed on any device.
-There are different sections in this site. It has candidate registration, recruiter registration, profile section, login.
-In this site recruiter after login can post their job posts from post section. This posts are added to post section. And these posts remain visibile till 5 days after the post's validity date i.e. the date till which the recruiter has kept the form collecting. After deadline reached the post is shown that it's deadline reached. And after 5 days it is deleted from database. This job cards when clicked opens the modal showing whole detail about that job and if the logged in user is candidate then it also shows button to apply. As soon as candidate apply for any job then he/she gets email about application. And the applied job details are added to his/her profile. And also the recruiter gets detail of this appler in their profile section.<hr> Also there is feedback section where anyone can give feedback and these are added to beside section. Also we have provided sweetalerts to every messages which makes it looks prettier. <br> <b> we also have provided report of the project.</b></p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Portal Website</title>
+</head>
+<body>
+    <h1>Job Portal Website</h1>
 
-<hr>
-<b><p>Do visit the site.</p></b>
+    <p>This is a Job Portal website built using Django, Bootstrap, and SQLite database. It provides a platform for recruiters to post job openings, candidates to search and apply for jobs, and for both recruiters and candidates to manage their profiles and applications.</p>
+
+    <h2>Features</h2>
+    <ul>
+        <li><strong>Recruiter Registration Form:</strong> Recruiters can register on the platform by filling out a registration form. Upon registration, they will have their own dashboard.</li>
+        <li><strong>Candidate Registration Form:</strong> Candidates can also register by providing their details. After registration, candidates can access their dashboard.</li>
+        <li><strong>Job Posts Section:</strong> Recruiters can create job postings with details such as job title, description, requirements, and application deadline. These job posts are displayed in the job posts section.</li>
+        <li><strong>Profile Section:</strong> Both recruiters and candidates have access to a profile section where they can update their information, including contact details and resume uploads.</li>
+        <li><strong>Application Tracking:</strong> Recruiters can see a list of candidates who have applied to their job postings. Candidates can view a list of job posts they have applied to.</li>
+        <li><strong>Automatic Deletion:</strong> Job postings are automatically removed from the job posts section when the application deadline is reached.</li>
+        <li><strong>Fully Responsive:</strong> The website is designed to be fully responsive, ensuring a seamless experience on various devices and screen sizes.</li>
+    </ul>
+
+    <h2>Installation</h2>
+    <ol>
+        <li>Clone the repository:</li>
+        <pre><code>git clone https://github.com/BhargavGurav/jobportal.git</code></pre>
+        
+        <!-- Add other installation steps here -->
+
+    </ol>
+
+    <h2>Usage</h2>
+    <ul>
+        <li>To access the admin panel, go to <a href="http://localhost:8000/admin/">http://localhost:8000/admin/</a> and log in with the superuser credentials you created earlier. You can manage users, job postings, and other site content from the admin panel.</li>
+        <li>Recruiters and candidates can register and log in through the website's registration and login forms.</li>
+        <li>Recruiters can post jobs from their dashboard, and candidates can search and apply for jobs.</li>
+    </ul>
+
+
+    <h2>Acknowledgments</h2>
+    <ul>
+        <li>Bootstrap for the responsive design.</li>
+        <li>Django for the web framework.</li>
+        <li>SQLite for the database.</li>
+    </ul>
+
+    <h2>Contact</h2>
+    <p>For any questions or feedback, please contact <a href="mailto:bhargavmonstergurav@gmail.com">Bhargav Gurav</a>.</p>
+</body>
+</html>
+
