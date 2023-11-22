@@ -49,21 +49,21 @@ python -m venv venv
   ```
 
 5. Install the required dependencies:
-
-pip install -r requirements.txt
-
+```
+  pip install -r requirements.txt
+```
 6. Run the migrations to create the database:
-
-python manage.py migrate
-
+```
+  python manage.py migrate
+```
 7. Create a superuser account (for admin access):
-
-python manage.py createsuperuser
-
+```
+  python manage.py createsuperuser
+```
 8. Start the development server:
-
-python manage.py runserver
-
+```
+  python manage.py runserver
+```
 9. Access the website in your web browser at [http://localhost:8000/](http://localhost:8000/)
 
 ## Usage
